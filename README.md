@@ -33,6 +33,7 @@ try {
 } catch (DaDataException $e) {
 	var_dump($e->getMessage());
 }
+```
 
 ## Support ##
 email: <apt.dmitry@gmail.com>
