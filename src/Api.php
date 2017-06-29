@@ -233,13 +233,15 @@ class Api {
 
     }
 
-
+    /**
+     * Clean address.
+     * @param string|mixed $data
+     * @param array $response
+     * @return string|bool
+     * @throws DaDataException
+     */
     public function cleanAddress($data, &$response = false)
     {
        return $this->clean('address', $data, 'address', $response);
     }
-
-
-
-
 }
