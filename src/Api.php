@@ -129,8 +129,7 @@ class Api {
 
             return $return;
         } else
-            if (isset($response[$resultAttr]))
-                return $response[$resultAttr];
+            return $response;
 
         return false;
     }
@@ -235,6 +234,10 @@ class Api {
     }
 
 
+    public function cleanAddress($data, &$response = false)
+    {
+       return $this->clean('address', $data, 'address', $response);
+    }
 
 
 
