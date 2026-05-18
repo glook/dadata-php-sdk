@@ -1,4 +1,4 @@
-# Dadata API SDK
+# Dadata Php SDK
 
 Typed PHP SDK for [Dadata API](https://dadata.ru/api/) generated from OpenAPI schemas.
 
@@ -12,7 +12,7 @@ For normal usage, create clients through the package factories instead of wiring
 ## Installation
 
 ```sh
-composer require glook/dadata-api-sdk
+composer require glook/dadata-php-sdk
 ```
 
 Requirements:
@@ -377,6 +377,12 @@ Run checks:
 
 ```sh
 composer check
+```
+
+Run unit tests:
+
+```sh
+composer test
 ```
 
 Regenerate clients from schemas:

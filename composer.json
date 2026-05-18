@@ -1,6 +1,6 @@
 {
-  "name": "glook/dadata-api-sdk",
-  "description": "PHP SDK для работы с dadata API",
+  "name": "glook/dadata-php-sdk",
+  "description": "Typed PHP SDK for Dadata API generated from OpenAPI schemas.",
   "type": "library",
   "minimum-stability": "stable",
   "license": "MIT",
@@ -28,6 +28,11 @@
       "Glook\\Dadata\\": "src/",
       "Glook\\Dadata\\Generated\\Suggestions\\": "generated/suggestions/",
       "Glook\\Dadata\\Generated\\Clear\\": "generated/clear/"
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "Glook\\Dadata\\Tests\\": "tests/"
     }
   },
   "require-dev": {
@@ -69,9 +74,11 @@
       "@cs"
     ],
     "cs": "php-cs-fixer fix --config=.php-cs-fixer.dist.php",
+    "test": "phpunit",
     "check": [
       "composer validate --strict --no-check-publish --no-check-lock",
-      "php-cs-fixer fix --config=.php-cs-fixer.dist.php --dry-run --diff --sequential"
+      "php-cs-fixer fix --config=.php-cs-fixer.dist.php --dry-run --diff --sequential",
+      "@test"
     ]
   }
 }
