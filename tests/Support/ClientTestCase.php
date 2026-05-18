@@ -10,14 +10,17 @@ use PHPUnit\Framework\TestCase;
 
 abstract class ClientTestCase extends TestCase
 {
-    /** @var string[] */
+    /** @var array */
     private $discoveryStrategies = [];
 
     protected function setUp(): void
     {
         parent::setUp();
 
-        $this->discoveryStrategies = iterator_to_array(Psr18ClientDiscovery::getStrategies());
+        $strategies = Psr18ClientDiscovery::getStrategies();
+        $this->discoveryStrategies = $strategies instanceof \Traversable
+            ? iterator_to_array($strategies)
+            : $strategies;
         Psr18ClientDiscovery::prependStrategy(TestPsr18ClientDiscoveryStrategy::class);
         RecordingHttpClient::reset();
     }
