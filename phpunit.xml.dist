@@ -4,8 +4,17 @@
          bootstrap="vendor/autoload.php"
          colors="true">
     <testsuites>
-        <testsuite name="Dadata API SDK">
-            <directory>tests</directory>
+        <testsuite name="unit">
+            <directory>tests/Suggestions</directory>
+            <directory>tests/Clear</directory>
+        </testsuite>
+        <testsuite name="compatibility">
+            <directory>tests/Compatibility</directory>
         </testsuite>
     </testsuites>
+    <coverage>
+        <include>
+            <directory suffix=".php">src</directory>
+        </include>
+    </coverage>
 </phpunit>
