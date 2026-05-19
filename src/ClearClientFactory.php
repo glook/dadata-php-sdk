@@ -12,6 +12,8 @@ use Jane\OpenApiRuntime\Client\Plugin\AuthenticationRegistry;
 
 final class ClearClientFactory
 {
+    private function __construct() {}
+
     /**
      * @param Plugin[] $additionalPlugins
      */
