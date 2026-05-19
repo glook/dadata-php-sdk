@@ -13,7 +13,7 @@
   "require": {
     "php": "^7.4 || ^8.0",
     "ext-json": "*",
-    "jane-php/open-api-runtime": "^6.3",
+    "jane-php/open-api-runtime": "^6.3 || ^7.0",
     "symfony/serializer": "^4.4 || ^5.0",
     "symfony/deprecation-contracts": "^2.5",
     "league/uri": ">=6.5 <6.8",
@@ -30,7 +30,8 @@
       "Glook\\Dadata\\": "src/",
       "Glook\\Dadata\\Generated\\Suggestions\\": "generated/suggestions/",
       "Glook\\Dadata\\Generated\\Clear\\": "generated/clear/"
-    }
+    },
+    "files": ["src/jane_runtime_compat.php"]
   },
   "autoload-dev": {
     "psr-4": {

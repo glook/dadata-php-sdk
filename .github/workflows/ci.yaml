@@ -7,12 +7,18 @@ on:
 
 jobs:
   tests:
-    name: PHP ${{ matrix.php }}
+    name: PHP ${{ matrix.php }} (jane ${{ matrix.jane }})
     runs-on: ubuntu-latest
     strategy:
       fail-fast: false
       matrix:
         php: ['7.4', '8.0', '8.1', '8.2', '8.3', '8.4']
+        jane: ['6']
+        include:
+          - { php: '8.1', jane: '7' }
+          - { php: '8.2', jane: '7' }
+          - { php: '8.3', jane: '7' }
+          - { php: '8.4', jane: '7' }
     steps:
       - uses: actions/checkout@v4
 
@@ -32,8 +38,14 @@ jobs:
         uses: actions/cache@v4
         with:
           path: ${{ steps.composer-cache.outputs.dir }}
-          key: ${{ runner.os }}-php${{ matrix.php }}-composer-${{ hashFiles('**/composer.lock') }}
-          restore-keys: ${{ runner.os }}-php${{ matrix.php }}-composer-
+          key: ${{ runner.os }}-php${{ matrix.php }}-jane${{ matrix.jane }}-composer-${{ hashFiles('**/composer.lock') }}
+          restore-keys: ${{ runner.os }}-php${{ matrix.php }}-jane${{ matrix.jane }}-composer-
+
+      - name: Switch to Jane runtime 7.x
+        if: matrix.jane == '7'
+        run: |
+          composer remove --no-update --dev jane-php/open-api-3 cweagans/composer-patches
+          composer require --no-update "jane-php/open-api-runtime:^7"
 
       - name: Install dependencies
         run: composer install --no-interaction --no-progress --prefer-dist
