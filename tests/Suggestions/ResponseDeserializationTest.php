@@ -4,12 +4,12 @@ declare(strict_types=1);
 
 namespace Glook\Dadata\Tests\Suggestions;
 
+use Glook\Dadata\DadataClientFactory;
 use Glook\Dadata\Generated\Suggestions\Client as SuggestionsClient;
 use Glook\Dadata\Generated\Suggestions\Model\SuggestAddressRequest;
 use Glook\Dadata\Generated\Suggestions\Model\SuggestRequest;
 use Glook\Dadata\Generated\Suggestions\Model\SuggestResponseAddress;
 use Glook\Dadata\Generated\Suggestions\Model\SuggestResponseEmail;
-use Glook\Dadata\SuggestionsClientFactory;
 use Glook\Dadata\Tests\Support\ClientTestCase;
 use Psr\Http\Message\ResponseInterface;
 
@@ -26,7 +26,7 @@ final class ResponseDeserializationTest extends ClientTestCase
     protected function setUp(): void
     {
         parent::setUp();
-        $this->client = SuggestionsClientFactory::create('test-token', 'test-secret');
+        $this->client = DadataClientFactory::createSuggestionsClient('test-token', 'test-secret');
     }
 
     public function testFetchResponseReturnsPsrResponse(): void

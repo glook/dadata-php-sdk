@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace Glook\Dadata\Tests\Suggestions;
 
+use Glook\Dadata\DadataClientFactory;
 use Glook\Dadata\Generated\Suggestions\Client as SuggestionsClient;
 use Glook\Dadata\Generated\Suggestions\Model\SuggestRequest;
-use Glook\Dadata\SuggestionsClientFactory;
 use Glook\Dadata\Tests\Support\ClientTestCase;
 use Glook\Dadata\Tests\Support\HeaderPlugin;
 use Glook\Dadata\Tests\Support\RecordingHttpClient;
@@ -20,14 +20,14 @@ final class ClientFactoryTest extends ClientTestCase
 {
     public function testCreateReturnsSuggestionsClient(): void
     {
-        $client = SuggestionsClientFactory::create('my-token', 'my-secret');
+        $client = DadataClientFactory::createSuggestionsClient('my-token', 'my-secret');
 
         $this->assertInstanceOf(SuggestionsClient::class, $client);
     }
 
     public function testSendsAuthorizationHeader(): void
     {
-        $client = SuggestionsClientFactory::create('api-token', 'secret-key');
+        $client = DadataClientFactory::createSuggestionsClient('api-token', 'secret-key');
         $client->suggestEmail(
             (new SuggestRequest())->setQuery('test@'),
             SuggestionsClient::FETCH_RESPONSE
@@ -39,7 +39,7 @@ final class ClientFactoryTest extends ClientTestCase
 
     public function testSendsSecretHeader(): void
     {
-        $client = SuggestionsClientFactory::create('api-token', 'secret-key');
+        $client = DadataClientFactory::createSuggestionsClient('api-token', 'secret-key');
         $client->suggestEmail(
             (new SuggestRequest())->setQuery('test@'),
             SuggestionsClient::FETCH_RESPONSE
@@ -51,7 +51,7 @@ final class ClientFactoryTest extends ClientTestCase
 
     public function testAdditionalPluginsAreApplied(): void
     {
-        $client = SuggestionsClientFactory::create('api-token', 'secret-key', [
+        $client = DadataClientFactory::createSuggestionsClient('api-token', 'secret-key', [
             new HeaderPlugin('X-Custom-Header', 'custom-value'),
         ]);
         $client->suggestEmail(

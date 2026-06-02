@@ -4,13 +4,12 @@ declare(strict_types=1);
 
 namespace Glook\Dadata\Tests\Compatibility;
 
-use Glook\Dadata\ClearClientFactory;
+use Glook\Dadata\DadataClientFactory;
 use Glook\Dadata\Generated\Clear\Client as ClearClient;
 use Glook\Dadata\Generated\Clear\Model\RecordString;
 use Glook\Dadata\Generated\Suggestions\Client as SuggestionsClient;
 use Glook\Dadata\Generated\Suggestions\Model\SuggestAddressRequest;
 use Glook\Dadata\Generated\Suggestions\Model\SuggestRequest;
-use Glook\Dadata\SuggestionsClientFactory;
 use Glook\Dadata\Tests\Support\ClientTestCase;
 use Glook\Dadata\Tests\Support\RecordingHttpClient;
 
@@ -29,14 +28,14 @@ final class PhpVersionSanityTest extends ClientTestCase
 
     public function testSuggestionsClientCanBeInstantiated(): void
     {
-        $client = SuggestionsClientFactory::create('token', 'secret');
+        $client = DadataClientFactory::createSuggestionsClient('token', 'secret');
 
         $this->assertInstanceOf(SuggestionsClient::class, $client);
     }
 
     public function testClearClientCanBeInstantiated(): void
     {
-        $client = ClearClientFactory::create('token', 'secret');
+        $client = DadataClientFactory::createClearClient('token', 'secret');
 
         $this->assertInstanceOf(ClearClient::class, $client);
     }
@@ -96,7 +95,7 @@ final class PhpVersionSanityTest extends ClientTestCase
 
     public function testUtf8QueryIsPreservedInRequest(): void
     {
-        $client = SuggestionsClientFactory::create('token', 'secret');
+        $client = DadataClientFactory::createSuggestionsClient('token', 'secret');
         $client->suggestEmail(
             (new SuggestRequest())->setQuery('мария@пример.рф'),
             SuggestionsClient::FETCH_RESPONSE
@@ -109,7 +108,7 @@ final class PhpVersionSanityTest extends ClientTestCase
 
     public function testClearAddressAcceptsMultipleInputs(): void
     {
-        $client = ClearClientFactory::create('token', 'secret');
+        $client = DadataClientFactory::createClearClient('token', 'secret');
         $client->cleanAddress(
             ['мск сухонская 11', 'спб невский 1', 'екатеринбург ленина 1'],
             ClearClient::FETCH_RESPONSE
@@ -121,7 +120,7 @@ final class PhpVersionSanityTest extends ClientTestCase
 
     public function testRequestBodyIsValidJson(): void
     {
-        $client = SuggestionsClientFactory::create('token', 'secret');
+        $client = DadataClientFactory::createSuggestionsClient('token', 'secret');
         $client->suggestEmail(
             (new SuggestRequest())->setQuery('test@')->setCount(10),
             SuggestionsClient::FETCH_RESPONSE

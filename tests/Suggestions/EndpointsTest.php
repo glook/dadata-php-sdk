@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Glook\Dadata\Tests\Suggestions;
 
+use Glook\Dadata\DadataClientFactory;
 use Glook\Dadata\Generated\Suggestions\Client as SuggestionsClient;
 use Glook\Dadata\Generated\Suggestions\Model\FindAddressByIdRequest;
 use Glook\Dadata\Generated\Suggestions\Model\FindAffiliatedPartyRequest;
@@ -20,7 +21,6 @@ use Glook\Dadata\Generated\Suggestions\Model\SuggestFioRequest;
 use Glook\Dadata\Generated\Suggestions\Model\SuggestOutwardRequest;
 use Glook\Dadata\Generated\Suggestions\Model\SuggestPartyRequest;
 use Glook\Dadata\Generated\Suggestions\Model\SuggestRequest;
-use Glook\Dadata\SuggestionsClientFactory;
 use Glook\Dadata\Tests\Support\ClientTestCase;
 use Glook\Dadata\Tests\Support\RecordingHttpClient;
 use Psr\Http\Message\RequestInterface;
@@ -38,7 +38,7 @@ final class EndpointsTest extends ClientTestCase
     protected function setUp(): void
     {
         parent::setUp();
-        $this->client = SuggestionsClientFactory::create('test-token', 'test-secret');
+        $this->client = DadataClientFactory::createSuggestionsClient('test-token', 'test-secret');
     }
 
     public function testSuggestEmailUrl(): void

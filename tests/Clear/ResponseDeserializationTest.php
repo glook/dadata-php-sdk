@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Glook\Dadata\Tests\Clear;
 
-use Glook\Dadata\ClearClientFactory;
+use Glook\Dadata\DadataClientFactory;
 use Glook\Dadata\Generated\Clear\Client as ClearClient;
 use Glook\Dadata\Generated\Clear\Model\Address;
 use Glook\Dadata\Generated\Clear\Model\Email;
@@ -26,7 +26,7 @@ final class ResponseDeserializationTest extends ClientTestCase
     protected function setUp(): void
     {
         parent::setUp();
-        $this->client = ClearClientFactory::create('test-token', 'test-secret');
+        $this->client = DadataClientFactory::createClearClient('test-token', 'test-secret');
     }
 
     public function testFetchResponseReturnsPsrResponse(): void

@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Glook\Dadata\Tests\Clear;
 
-use Glook\Dadata\ClearClientFactory;
+use Glook\Dadata\DadataClientFactory;
 use Glook\Dadata\Generated\Clear\Client as ClearClient;
 use Glook\Dadata\Tests\Support\ClientTestCase;
 use Glook\Dadata\Tests\Support\HeaderPlugin;
@@ -19,14 +19,14 @@ final class ClientFactoryTest extends ClientTestCase
 {
     public function testCreateReturnsClearClient(): void
     {
-        $client = ClearClientFactory::create('my-token', 'my-secret');
+        $client = DadataClientFactory::createClearClient('my-token', 'my-secret');
 
         $this->assertInstanceOf(ClearClient::class, $client);
     }
 
     public function testSendsAuthorizationHeader(): void
     {
-        $client = ClearClientFactory::create('api-token', 'secret-key');
+        $client = DadataClientFactory::createClearClient('api-token', 'secret-key');
         $client->cleanAddress(['мск сухонская 11'], ClearClient::FETCH_RESPONSE);
 
         $request = RecordingHttpClient::lastRequest();
@@ -35,7 +35,7 @@ final class ClientFactoryTest extends ClientTestCase
 
     public function testSendsSecretHeader(): void
     {
-        $client = ClearClientFactory::create('api-token', 'secret-key');
+        $client = DadataClientFactory::createClearClient('api-token', 'secret-key');
         $client->cleanAddress(['мск сухонская 11'], ClearClient::FETCH_RESPONSE);
 
         $request = RecordingHttpClient::lastRequest();
@@ -44,7 +44,7 @@ final class ClientFactoryTest extends ClientTestCase
 
     public function testAdditionalPluginsAreApplied(): void
     {
-        $client = ClearClientFactory::create('api-token', 'secret-key', [
+        $client = DadataClientFactory::createClearClient('api-token', 'secret-key', [
             new HeaderPlugin('X-Custom-Header', 'custom-value'),
         ]);
         $client->cleanAddress(['мск сухонская 11'], ClearClient::FETCH_RESPONSE);
