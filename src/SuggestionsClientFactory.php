@@ -10,6 +10,10 @@ use Glook\Dadata\Generated\Suggestions\Client;
 use Http\Client\Common\Plugin;
 use Jane\OpenApiRuntime\Client\Plugin\AuthenticationRegistry;
 
+/**
+ * @deprecated Use DadataClientFactory::createSuggestionsClient() instead
+ * @see DadataClientFactory::createSuggestionsClient()
+ */
 final class SuggestionsClientFactory
 {
     private function __construct() {}

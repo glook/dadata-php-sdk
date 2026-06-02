@@ -43,14 +43,13 @@ new AuthenticationRegistry([
 You only need to pass raw credentials:
 
 ```php
-use Glook\Dadata\ClearClientFactory;
-use Glook\Dadata\SuggestionsClientFactory;
+use Glook\Dadata\DadataClientFactory;
 
 $token = 'Replace with Dadata API key';
 $secret = 'Replace with Dadata secret key';
 
-$suggestions = SuggestionsClientFactory::create($token, $secret);
-$clear = ClearClientFactory::create($token, $secret);
+$suggestions = DadataClientFactory::createSuggestionsClient($token, $secret);
+$clear = DadataClientFactory::createClearClient($token, $secret);
 ```
 
 ## HTTP Plugins
@@ -59,11 +58,11 @@ Factories accept an optional list of extra `Http\Client\Common\Plugin` instances
 Authentication is always registered first, then your plugins are appended.
 
 ```php
-use Glook\Dadata\SuggestionsClientFactory;
+use Glook\Dadata\DadataClientFactory;
 use Http\Client\Common\Plugin\HeaderDefaultsPlugin;
 use Http\Client\Common\Plugin\RetryPlugin;
 
-$client = SuggestionsClientFactory::create($token, $secret, [
+$client = DadataClientFactory::createSuggestionsClient($token, $secret, [
     new RetryPlugin(['retries' => 2]),
     new HeaderDefaultsPlugin([
         'User-Agent' => 'my-application/1.0',
@@ -94,9 +93,9 @@ $response = $client->suggestAddress($request, Client::FETCH_RESPONSE);
 Create a Suggestions client:
 
 ```php
-use Glook\Dadata\SuggestionsClientFactory;
+use Glook\Dadata\DadataClientFactory;
 
-$client = SuggestionsClientFactory::create($token, $secret);
+$client = DadataClientFactory::createSuggestionsClient($token, $secret);
 ```
 
 ### Suggest Address
@@ -241,9 +240,9 @@ $response = $client->suggestEmail($request);
 Create a Cleaner client:
 
 ```php
-use Glook\Dadata\ClearClientFactory;
+use Glook\Dadata\DadataClientFactory;
 
-$client = ClearClientFactory::create($token, $secret);
+$client = DadataClientFactory::createClearClient($token, $secret);
 ```
 
 ### Clean Address
@@ -347,8 +346,7 @@ For Cleaner API imports, use `Glook\Dadata\Generated\Clear\Exception\UnexpectedS
 
 ```text
 src/
-  ClearClientFactory.php
-  SuggestionsClientFactory.php
+  DadataClientFactory.php
 generated/
   clear/
   suggestions/

@@ -10,6 +10,10 @@ use Glook\Dadata\Generated\Clear\Client;
 use Http\Client\Common\Plugin;
 use Jane\OpenApiRuntime\Client\Plugin\AuthenticationRegistry;
 
+/**
+ * @deprecated Use DadataClientFactory::createClearClient() instead
+ * @see DadataClientFactory::createClearClient()
+ */
 final class ClearClientFactory
 {
     private function __construct() {}
