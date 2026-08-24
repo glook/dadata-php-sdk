@@ -40,10 +40,15 @@ class PartyCodeUnitNormalizer implements DenormalizerInterface, NormalizerInterf
         if (null === $data || false === \is_array($data)) {
             return $object;
         }
-        if (\array_key_exists('alpha3', $data) && null !== $data['alpha3']) {
-            $object->setAlpha3($data['alpha3']);
-        } elseif (\array_key_exists('alpha3', $data) && null === $data['alpha3']) {
+        if (\array_key_exists('alpha_3', $data) && null !== $data['alpha_3']) {
+            $object->setAlpha3($data['alpha_3']);
+        } elseif (\array_key_exists('alpha_3', $data) && null === $data['alpha_3']) {
             $object->setAlpha3(null);
+        }
+        if (\array_key_exists('alpha3', $data) && null !== $data['alpha3']) {
+            $object->setAlpha32($data['alpha3']);
+        } elseif (\array_key_exists('alpha3', $data) && null === $data['alpha3']) {
+            $object->setAlpha32(null);
         }
         if (\array_key_exists('numeric', $data) && null !== $data['numeric']) {
             $object->setNumeric($data['numeric']);
@@ -58,7 +63,10 @@ class PartyCodeUnitNormalizer implements DenormalizerInterface, NormalizerInterf
     {
         $data = [];
         if (null !== $object->getAlpha3()) {
-            $data['alpha3'] = $object->getAlpha3();
+            $data['alpha_3'] = $object->getAlpha3();
+        }
+        if (null !== $object->getAlpha32()) {
+            $data['alpha3'] = $object->getAlpha32();
         }
         if (null !== $object->getNumeric()) {
             $data['numeric'] = $object->getNumeric();

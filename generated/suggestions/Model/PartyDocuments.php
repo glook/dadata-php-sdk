@@ -5,7 +5,7 @@ namespace Glook\Dadata\Generated\Suggestions\Model;
 class PartyDocuments
 {
     /**
-     * @var PartyDocument
+     * @var null|PartyDocument
      */
     protected $ftsRegistration;
 
@@ -15,26 +15,26 @@ class PartyDocuments
     protected $ftsReport;
 
     /**
-     * @var PartyDocument
+     * @var null|PartyDocument
      */
     protected $pfRegistration;
 
     /**
-     * @var PartyDocument
+     * @var null|PartyDocument
      */
     protected $sifRegistration;
 
     /**
-     * @var PartySmbDocument
+     * @var null|PartySmbDocument
      */
     protected $smb;
 
-    public function getFtsRegistration(): PartyDocument
+    public function getFtsRegistration(): ?PartyDocument
     {
         return $this->ftsRegistration;
     }
 
-    public function setFtsRegistration(PartyDocument $ftsRegistration): self
+    public function setFtsRegistration(?PartyDocument $ftsRegistration): self
     {
         $this->ftsRegistration = $ftsRegistration;
 
@@ -53,36 +53,36 @@ class PartyDocuments
         return $this;
     }
 
-    public function getPfRegistration(): PartyDocument
+    public function getPfRegistration(): ?PartyDocument
     {
         return $this->pfRegistration;
     }
 
-    public function setPfRegistration(PartyDocument $pfRegistration): self
+    public function setPfRegistration(?PartyDocument $pfRegistration): self
     {
         $this->pfRegistration = $pfRegistration;
 
         return $this;
     }
 
-    public function getSifRegistration(): PartyDocument
+    public function getSifRegistration(): ?PartyDocument
     {
         return $this->sifRegistration;
     }
 
-    public function setSifRegistration(PartyDocument $sifRegistration): self
+    public function setSifRegistration(?PartyDocument $sifRegistration): self
     {
         $this->sifRegistration = $sifRegistration;
 
         return $this;
     }
 
-    public function getSmb(): PartySmbDocument
+    public function getSmb(): ?PartySmbDocument
     {
         return $this->smb;
     }
 
-    public function setSmb(PartySmbDocument $smb): self
+    public function setSmb(?PartySmbDocument $smb): self
     {
         $this->smb = $smb;
 

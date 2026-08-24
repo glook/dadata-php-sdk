@@ -2,7 +2,7 @@
 
 namespace Glook\Dadata\Generated\Suggestions\Normalizer;
 
-use Glook\Dadata\Generated\Suggestions\Model\PartyOpf;
+use Glook\Dadata\Generated\Suggestions\Model\FinanceMetric;
 use Glook\Dadata\Generated\Suggestions\Runtime\Normalizer\CheckArray;
 use Jane\JsonSchemaRuntime\Reference;
 use Symfony\Component\Serializer\Normalizer\DenormalizerAwareInterface;
@@ -12,7 +12,7 @@ use Symfony\Component\Serializer\Normalizer\NormalizerAwareInterface;
 use Symfony\Component\Serializer\Normalizer\NormalizerAwareTrait;
 use Symfony\Component\Serializer\Normalizer\NormalizerInterface;
 
-class PartyOpfNormalizer implements DenormalizerInterface, NormalizerInterface, DenormalizerAwareInterface, NormalizerAwareInterface
+class FinanceMetricNormalizer implements DenormalizerInterface, NormalizerInterface, DenormalizerAwareInterface, NormalizerAwareInterface
 {
     use DenormalizerAwareTrait;
     use NormalizerAwareTrait;
@@ -20,12 +20,12 @@ class PartyOpfNormalizer implements DenormalizerInterface, NormalizerInterface, 
 
     public function supportsDenormalization($data, $type, $format = null)
     {
-        return 'Glook\Dadata\Generated\Suggestions\Model\PartyOpf' === $type;
+        return 'Glook\Dadata\Generated\Suggestions\Model\FinanceMetric' === $type;
     }
 
     public function supportsNormalization($data, $format = null)
     {
-        return is_object($data) && 'Glook\Dadata\Generated\Suggestions\Model\PartyOpf' === get_class($data);
+        return is_object($data) && 'Glook\Dadata\Generated\Suggestions\Model\FinanceMetric' === get_class($data);
     }
 
     public function denormalize($data, $class, $format = null, array $context = [])
@@ -36,7 +36,7 @@ class PartyOpfNormalizer implements DenormalizerInterface, NormalizerInterface, 
         if (isset($data['$recursiveRef'])) {
             return new Reference($data['$recursiveRef'], $context['document-origin']);
         }
-        $object = new PartyOpf();
+        $object = new FinanceMetric();
         if (null === $data || false === \is_array($data)) {
             return $object;
         }
@@ -45,20 +45,10 @@ class PartyOpfNormalizer implements DenormalizerInterface, NormalizerInterface, 
         } elseif (\array_key_exists('code', $data) && null === $data['code']) {
             $object->setCode(null);
         }
-        if (\array_key_exists('full', $data) && null !== $data['full']) {
-            $object->setFull($data['full']);
-        } elseif (\array_key_exists('full', $data) && null === $data['full']) {
-            $object->setFull(null);
-        }
-        if (\array_key_exists('short', $data) && null !== $data['short']) {
-            $object->setShort($data['short']);
-        } elseif (\array_key_exists('short', $data) && null === $data['short']) {
-            $object->setShort(null);
-        }
-        if (\array_key_exists('type', $data) && null !== $data['type']) {
-            $object->setType($data['type']);
-        } elseif (\array_key_exists('type', $data) && null === $data['type']) {
-            $object->setType(null);
+        if (\array_key_exists('value', $data) && null !== $data['value']) {
+            $object->setValue($data['value']);
+        } elseif (\array_key_exists('value', $data) && null === $data['value']) {
+            $object->setValue(null);
         }
 
         return $object;
@@ -70,14 +60,8 @@ class PartyOpfNormalizer implements DenormalizerInterface, NormalizerInterface, 
         if (null !== $object->getCode()) {
             $data['code'] = $object->getCode();
         }
-        if (null !== $object->getFull()) {
-            $data['full'] = $object->getFull();
-        }
-        if (null !== $object->getShort()) {
-            $data['short'] = $object->getShort();
-        }
-        if (null !== $object->getType()) {
-            $data['type'] = $object->getType();
+        if (null !== $object->getValue()) {
+            $data['value'] = $object->getValue();
         }
 
         return $data;

@@ -15,7 +15,7 @@ class PartyPhone
     protected $cityCode;
 
     /**
-     * @var PartyPhoneContact
+     * @var null|PartyPhoneContact
      */
     protected $contact;
 
@@ -38,6 +38,11 @@ class PartyPhone
      * @var null|string
      */
     protected $number;
+
+    /**
+     * @var null|mixed[]
+     */
+    protected $origins;
 
     /**
      * @var null|string
@@ -98,12 +103,12 @@ class PartyPhone
         return $this;
     }
 
-    public function getContact(): PartyPhoneContact
+    public function getContact(): ?PartyPhoneContact
     {
         return $this->contact;
     }
 
-    public function setContact(PartyPhoneContact $contact): self
+    public function setContact(?PartyPhoneContact $contact): self
     {
         $this->contact = $contact;
 
@@ -154,6 +159,24 @@ class PartyPhone
     public function setNumber(?string $number): self
     {
         $this->number = $number;
+
+        return $this;
+    }
+
+    /**
+     * @return null|mixed[]
+     */
+    public function getOrigins(): ?array
+    {
+        return $this->origins;
+    }
+
+    /**
+     * @param null|mixed[] $origins
+     */
+    public function setOrigins(?array $origins): self
+    {
+        $this->origins = $origins;
 
         return $this;
     }

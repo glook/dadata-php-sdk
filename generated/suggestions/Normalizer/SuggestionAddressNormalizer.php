@@ -40,8 +40,10 @@ class SuggestionAddressNormalizer implements DenormalizerInterface, NormalizerIn
         if (null === $data || false === \is_array($data)) {
             return $object;
         }
-        if (\array_key_exists('data', $data)) {
+        if (\array_key_exists('data', $data) && null !== $data['data']) {
             $object->setData($this->denormalizer->denormalize($data['data'], 'Glook\Dadata\Generated\Suggestions\Model\Address', 'json', $context));
+        } elseif (\array_key_exists('data', $data) && null === $data['data']) {
+            $object->setData(null);
         }
         if (\array_key_exists('unrestricted_value', $data) && null !== $data['unrestricted_value']) {
             $object->setUnrestrictedValue($data['unrestricted_value']);

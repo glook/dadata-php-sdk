@@ -40,13 +40,30 @@ class ManagerPartyNormalizer implements DenormalizerInterface, NormalizerInterfa
         if (null === $data || false === \is_array($data)) {
             return $object;
         }
+        if (\array_key_exists('fio', $data) && null !== $data['fio']) {
+            $object->setFio($this->denormalizer->denormalize($data['fio'], 'Glook\Dadata\Generated\Suggestions\Model\Fio', 'json', $context));
+        } elseif (\array_key_exists('fio', $data) && null === $data['fio']) {
+            $object->setFio(null);
+        }
         if (\array_key_exists('hid', $data) && null !== $data['hid']) {
             $object->setHid($data['hid']);
         } elseif (\array_key_exists('hid', $data) && null === $data['hid']) {
             $object->setHid(null);
         }
-        if (\array_key_exists('invalidity', $data)) {
+        if (\array_key_exists('inn', $data) && null !== $data['inn']) {
+            $object->setInn($data['inn']);
+        } elseif (\array_key_exists('inn', $data) && null === $data['inn']) {
+            $object->setInn(null);
+        }
+        if (\array_key_exists('invalidity', $data) && null !== $data['invalidity']) {
             $object->setInvalidity($this->denormalizer->denormalize($data['invalidity'], 'Glook\Dadata\Generated\Suggestions\Model\PartyInvalidity', 'json', $context));
+        } elseif (\array_key_exists('invalidity', $data) && null === $data['invalidity']) {
+            $object->setInvalidity(null);
+        }
+        if (\array_key_exists('post', $data) && null !== $data['post']) {
+            $object->setPost($data['post']);
+        } elseif (\array_key_exists('post', $data) && null === $data['post']) {
+            $object->setPost(null);
         }
         if (\array_key_exists('start_date', $data) && null !== $data['start_date']) {
             $object->setStartDate($data['start_date']);
@@ -65,11 +82,20 @@ class ManagerPartyNormalizer implements DenormalizerInterface, NormalizerInterfa
     public function normalize($object, $format = null, array $context = [])
     {
         $data = [];
+        if (null !== $object->getFio()) {
+            $data['fio'] = $this->normalizer->normalize($object->getFio(), 'json', $context);
+        }
         if (null !== $object->getHid()) {
             $data['hid'] = $object->getHid();
         }
+        if (null !== $object->getInn()) {
+            $data['inn'] = $object->getInn();
+        }
         if (null !== $object->getInvalidity()) {
             $data['invalidity'] = $this->normalizer->normalize($object->getInvalidity(), 'json', $context);
+        }
+        if (null !== $object->getPost()) {
+            $data['post'] = $object->getPost();
         }
         if (null !== $object->getStartDate()) {
             $data['start_date'] = $object->getStartDate();

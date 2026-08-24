@@ -5,7 +5,7 @@ namespace Glook\Dadata\Generated\Suggestions\Model;
 class Party
 {
     /**
-     * @var PartyAddress
+     * @var null|PartyAddress
      */
     protected $address;
 
@@ -25,17 +25,17 @@ class Party
     protected $branchType;
 
     /**
-     * @var PartyCapital
+     * @var null|PartyCapital
      */
     protected $capital;
 
     /**
-     * @var PartyCountry
+     * @var null|PartyCountry
      */
     protected $citizenship;
 
     /**
-     * @var PartyDocuments
+     * @var null|PartyDocuments
      */
     protected $documents;
 
@@ -50,12 +50,17 @@ class Party
     protected $employeeCount;
 
     /**
-     * @var PartyFinance
+     * @var null|PartyFinance
      */
     protected $finance;
 
     /**
-     * @var Fio
+     * @var null|FinanceHistoryItem[]
+     */
+    protected $financeHistory;
+
+    /**
+     * @var null|Fio
      */
     protected $fio;
 
@@ -95,7 +100,7 @@ class Party
     protected $licenses;
 
     /**
-     * @var PartyManagement
+     * @var null|PartyManagement
      */
     protected $management;
 
@@ -160,7 +165,7 @@ class Party
     protected $okveds;
 
     /**
-     * @var PartyOpf
+     * @var null|PartyOpf
      */
     protected $opf;
 
@@ -185,6 +190,11 @@ class Party
     protected $source;
 
     /**
+     * @var null|mixed[]
+     */
+    protected $sites;
+
+    /**
      * @var PartyState
      */
     protected $state;
@@ -199,12 +209,12 @@ class Party
      */
     protected $type;
 
-    public function getAddress(): PartyAddress
+    public function getAddress(): ?PartyAddress
     {
         return $this->address;
     }
 
-    public function setAddress(PartyAddress $address): self
+    public function setAddress(?PartyAddress $address): self
     {
         $this->address = $address;
 
@@ -247,36 +257,36 @@ class Party
         return $this;
     }
 
-    public function getCapital(): PartyCapital
+    public function getCapital(): ?PartyCapital
     {
         return $this->capital;
     }
 
-    public function setCapital(PartyCapital $capital): self
+    public function setCapital(?PartyCapital $capital): self
     {
         $this->capital = $capital;
 
         return $this;
     }
 
-    public function getCitizenship(): PartyCountry
+    public function getCitizenship(): ?PartyCountry
     {
         return $this->citizenship;
     }
 
-    public function setCitizenship(PartyCountry $citizenship): self
+    public function setCitizenship(?PartyCountry $citizenship): self
     {
         $this->citizenship = $citizenship;
 
         return $this;
     }
 
-    public function getDocuments(): PartyDocuments
+    public function getDocuments(): ?PartyDocuments
     {
         return $this->documents;
     }
 
-    public function setDocuments(PartyDocuments $documents): self
+    public function setDocuments(?PartyDocuments $documents): self
     {
         $this->documents = $documents;
 
@@ -313,24 +323,42 @@ class Party
         return $this;
     }
 
-    public function getFinance(): PartyFinance
+    public function getFinance(): ?PartyFinance
     {
         return $this->finance;
     }
 
-    public function setFinance(PartyFinance $finance): self
+    public function setFinance(?PartyFinance $finance): self
     {
         $this->finance = $finance;
 
         return $this;
     }
 
-    public function getFio(): Fio
+    /**
+     * @return null|FinanceHistoryItem[]
+     */
+    public function getFinanceHistory(): ?array
+    {
+        return $this->financeHistory;
+    }
+
+    /**
+     * @param null|FinanceHistoryItem[] $financeHistory
+     */
+    public function setFinanceHistory(?array $financeHistory): self
+    {
+        $this->financeHistory = $financeHistory;
+
+        return $this;
+    }
+
+    public function getFio(): ?Fio
     {
         return $this->fio;
     }
 
-    public function setFio(Fio $fio): self
+    public function setFio(?Fio $fio): self
     {
         $this->fio = $fio;
 
@@ -433,12 +461,12 @@ class Party
         return $this;
     }
 
-    public function getManagement(): PartyManagement
+    public function getManagement(): ?PartyManagement
     {
         return $this->management;
     }
 
-    public function setManagement(PartyManagement $management): self
+    public function setManagement(?PartyManagement $management): self
     {
         $this->management = $management;
 
@@ -601,12 +629,12 @@ class Party
         return $this;
     }
 
-    public function getOpf(): PartyOpf
+    public function getOpf(): ?PartyOpf
     {
         return $this->opf;
     }
 
-    public function setOpf(PartyOpf $opf): self
+    public function setOpf(?PartyOpf $opf): self
     {
         $this->opf = $opf;
 
@@ -669,6 +697,24 @@ class Party
     public function setSource(?string $source): self
     {
         $this->source = $source;
+
+        return $this;
+    }
+
+    /**
+     * @return null|mixed[]
+     */
+    public function getSites(): ?array
+    {
+        return $this->sites;
+    }
+
+    /**
+     * @param null|mixed[] $sites
+     */
+    public function setSites(?array $sites): self
+    {
+        $this->sites = $sites;
 
         return $this;
     }

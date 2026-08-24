@@ -40,15 +40,15 @@ class PartyNameUnitNormalizer implements DenormalizerInterface, NormalizerInterf
         if (null === $data || false === \is_array($data)) {
             return $object;
         }
-        if (\array_key_exists('full_value', $data) && null !== $data['full_value']) {
-            $object->setFullValue($data['full_value']);
-        } elseif (\array_key_exists('full_value', $data) && null === $data['full_value']) {
-            $object->setFullValue(null);
+        if (\array_key_exists('full', $data) && null !== $data['full']) {
+            $object->setFull($data['full']);
+        } elseif (\array_key_exists('full', $data) && null === $data['full']) {
+            $object->setFull(null);
         }
-        if (\array_key_exists('short_value', $data) && null !== $data['short_value']) {
-            $object->setShortValue($data['short_value']);
-        } elseif (\array_key_exists('short_value', $data) && null === $data['short_value']) {
-            $object->setShortValue(null);
+        if (\array_key_exists('short', $data) && null !== $data['short']) {
+            $object->setShort($data['short']);
+        } elseif (\array_key_exists('short', $data) && null === $data['short']) {
+            $object->setShort(null);
         }
 
         return $object;
@@ -57,11 +57,11 @@ class PartyNameUnitNormalizer implements DenormalizerInterface, NormalizerInterf
     public function normalize($object, $format = null, array $context = [])
     {
         $data = [];
-        if (null !== $object->getFullValue()) {
-            $data['full_value'] = $object->getFullValue();
+        if (null !== $object->getFull()) {
+            $data['full'] = $object->getFull();
         }
-        if (null !== $object->getShortValue()) {
-            $data['short_value'] = $object->getShortValue();
+        if (null !== $object->getShort()) {
+            $data['short'] = $object->getShort();
         }
 
         return $data;

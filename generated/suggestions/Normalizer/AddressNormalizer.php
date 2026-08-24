@@ -184,8 +184,10 @@ class AddressNormalizer implements DenormalizerInterface, NormalizerInterface, D
         } elseif (\array_key_exists('custom', $data) && null === $data['custom']) {
             $object->setCustom(null);
         }
-        if (\array_key_exists('divisions', $data)) {
+        if (\array_key_exists('divisions', $data) && null !== $data['divisions']) {
             $object->setDivisions($this->denormalizer->denormalize($data['divisions'], 'Glook\Dadata\Generated\Suggestions\Model\AddressDivisions', 'json', $context));
+        } elseif (\array_key_exists('divisions', $data) && null === $data['divisions']) {
+            $object->setDivisions(null);
         }
         if (\array_key_exists('entrance', $data) && null !== $data['entrance']) {
             $object->setEntrance($data['entrance']);

@@ -40,17 +40,25 @@ class PartyAuthoritiesNormalizer implements DenormalizerInterface, NormalizerInt
         if (null === $data || false === \is_array($data)) {
             return $object;
         }
-        if (\array_key_exists('fts_registration', $data)) {
+        if (\array_key_exists('fts_registration', $data) && null !== $data['fts_registration']) {
             $object->setFtsRegistration($this->denormalizer->denormalize($data['fts_registration'], 'Glook\Dadata\Generated\Suggestions\Model\PartyAuthority', 'json', $context));
+        } elseif (\array_key_exists('fts_registration', $data) && null === $data['fts_registration']) {
+            $object->setFtsRegistration(null);
         }
-        if (\array_key_exists('fts_report', $data)) {
+        if (\array_key_exists('fts_report', $data) && null !== $data['fts_report']) {
             $object->setFtsReport($this->denormalizer->denormalize($data['fts_report'], 'Glook\Dadata\Generated\Suggestions\Model\PartyAuthority', 'json', $context));
+        } elseif (\array_key_exists('fts_report', $data) && null === $data['fts_report']) {
+            $object->setFtsReport(null);
         }
-        if (\array_key_exists('pf', $data)) {
+        if (\array_key_exists('pf', $data) && null !== $data['pf']) {
             $object->setPf($this->denormalizer->denormalize($data['pf'], 'Glook\Dadata\Generated\Suggestions\Model\PartyAuthority', 'json', $context));
+        } elseif (\array_key_exists('pf', $data) && null === $data['pf']) {
+            $object->setPf(null);
         }
-        if (\array_key_exists('sif', $data)) {
+        if (\array_key_exists('sif', $data) && null !== $data['sif']) {
             $object->setSif($this->denormalizer->denormalize($data['sif'], 'Glook\Dadata\Generated\Suggestions\Model\PartyAuthority', 'json', $context));
+        } elseif (\array_key_exists('sif', $data) && null === $data['sif']) {
+            $object->setSif(null);
         }
 
         return $object;

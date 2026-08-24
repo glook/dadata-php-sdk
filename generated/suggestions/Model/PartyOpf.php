@@ -12,12 +12,12 @@ class PartyOpf
     /**
      * @var null|string
      */
-    protected $fullValue;
+    protected $full;
 
     /**
      * @var null|string
      */
-    protected $shortValue;
+    protected $short;
 
     /**
      * @var null|string
@@ -36,26 +36,26 @@ class PartyOpf
         return $this;
     }
 
-    public function getFullValue(): ?string
+    public function getFull(): ?string
     {
-        return $this->fullValue;
+        return $this->full;
     }
 
-    public function setFullValue(?string $fullValue): self
+    public function setFull(?string $full): self
     {
-        $this->fullValue = $fullValue;
+        $this->full = $full;
 
         return $this;
     }
 
-    public function getShortValue(): ?string
+    public function getShort(): ?string
     {
-        return $this->shortValue;
+        return $this->short;
     }
 
-    public function setShortValue(?string $shortValue): self
+    public function setShort(?string $short): self
     {
-        $this->shortValue = $shortValue;
+        $this->short = $short;
 
         return $this;
     }

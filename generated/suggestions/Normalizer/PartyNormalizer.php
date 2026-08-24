@@ -40,8 +40,10 @@ class PartyNormalizer implements DenormalizerInterface, NormalizerInterface, Den
         if (null === $data || false === \is_array($data)) {
             return $object;
         }
-        if (\array_key_exists('address', $data)) {
+        if (\array_key_exists('address', $data) && null !== $data['address']) {
             $object->setAddress($this->denormalizer->denormalize($data['address'], 'Glook\Dadata\Generated\Suggestions\Model\PartyAddress', 'json', $context));
+        } elseif (\array_key_exists('address', $data) && null === $data['address']) {
+            $object->setAddress(null);
         }
         if (\array_key_exists('authorities', $data)) {
             $object->setAuthorities($this->denormalizer->denormalize($data['authorities'], 'Glook\Dadata\Generated\Suggestions\Model\PartyAuthorities', 'json', $context));
@@ -56,14 +58,20 @@ class PartyNormalizer implements DenormalizerInterface, NormalizerInterface, Den
         } elseif (\array_key_exists('branch_type', $data) && null === $data['branch_type']) {
             $object->setBranchType(null);
         }
-        if (\array_key_exists('capital', $data)) {
+        if (\array_key_exists('capital', $data) && null !== $data['capital']) {
             $object->setCapital($this->denormalizer->denormalize($data['capital'], 'Glook\Dadata\Generated\Suggestions\Model\PartyCapital', 'json', $context));
+        } elseif (\array_key_exists('capital', $data) && null === $data['capital']) {
+            $object->setCapital(null);
         }
-        if (\array_key_exists('citizenship', $data)) {
+        if (\array_key_exists('citizenship', $data) && null !== $data['citizenship']) {
             $object->setCitizenship($this->denormalizer->denormalize($data['citizenship'], 'Glook\Dadata\Generated\Suggestions\Model\PartyCountry', 'json', $context));
+        } elseif (\array_key_exists('citizenship', $data) && null === $data['citizenship']) {
+            $object->setCitizenship(null);
         }
-        if (\array_key_exists('documents', $data)) {
+        if (\array_key_exists('documents', $data) && null !== $data['documents']) {
             $object->setDocuments($this->denormalizer->denormalize($data['documents'], 'Glook\Dadata\Generated\Suggestions\Model\PartyDocuments', 'json', $context));
+        } elseif (\array_key_exists('documents', $data) && null === $data['documents']) {
+            $object->setDocuments(null);
         }
         if (\array_key_exists('emails', $data) && null !== $data['emails']) {
             $values = [];
@@ -79,18 +87,31 @@ class PartyNormalizer implements DenormalizerInterface, NormalizerInterface, Den
         } elseif (\array_key_exists('employee_count', $data) && null === $data['employee_count']) {
             $object->setEmployeeCount(null);
         }
-        if (\array_key_exists('finance', $data)) {
+        if (\array_key_exists('finance', $data) && null !== $data['finance']) {
             $object->setFinance($this->denormalizer->denormalize($data['finance'], 'Glook\Dadata\Generated\Suggestions\Model\PartyFinance', 'json', $context));
+        } elseif (\array_key_exists('finance', $data) && null === $data['finance']) {
+            $object->setFinance(null);
         }
-        if (\array_key_exists('fio', $data)) {
+        if (\array_key_exists('finance_history', $data) && null !== $data['finance_history']) {
+            $values_1 = [];
+            foreach ($data['finance_history'] as $value_1) {
+                $values_1[] = $this->denormalizer->denormalize($value_1, 'Glook\Dadata\Generated\Suggestions\Model\FinanceHistoryItem', 'json', $context);
+            }
+            $object->setFinanceHistory($values_1);
+        } elseif (\array_key_exists('finance_history', $data) && null === $data['finance_history']) {
+            $object->setFinanceHistory(null);
+        }
+        if (\array_key_exists('fio', $data) && null !== $data['fio']) {
             $object->setFio($this->denormalizer->denormalize($data['fio'], 'Glook\Dadata\Generated\Suggestions\Model\Fio', 'json', $context));
+        } elseif (\array_key_exists('fio', $data) && null === $data['fio']) {
+            $object->setFio(null);
         }
         if (\array_key_exists('founders', $data) && null !== $data['founders']) {
-            $values_1 = [];
-            foreach ($data['founders'] as $value_1) {
-                $values_1[] = $this->denormalizer->denormalize($value_1, 'Glook\Dadata\Generated\Suggestions\Model\FounderParty', 'json', $context);
+            $values_2 = [];
+            foreach ($data['founders'] as $value_2) {
+                $values_2[] = $this->denormalizer->denormalize($value_2, 'Glook\Dadata\Generated\Suggestions\Model\FounderParty', 'json', $context);
             }
-            $object->setFounders($values_1);
+            $object->setFounders($values_2);
         } elseif (\array_key_exists('founders', $data) && null === $data['founders']) {
             $object->setFounders(null);
         }
@@ -120,23 +141,25 @@ class PartyNormalizer implements DenormalizerInterface, NormalizerInterface, Den
             $object->setKppLargest(null);
         }
         if (\array_key_exists('licenses', $data) && null !== $data['licenses']) {
-            $values_2 = [];
-            foreach ($data['licenses'] as $value_2) {
-                $values_2[] = $this->denormalizer->denormalize($value_2, 'Glook\Dadata\Generated\Suggestions\Model\PartyLicense', 'json', $context);
+            $values_3 = [];
+            foreach ($data['licenses'] as $value_3) {
+                $values_3[] = $this->denormalizer->denormalize($value_3, 'Glook\Dadata\Generated\Suggestions\Model\PartyLicense', 'json', $context);
             }
-            $object->setLicenses($values_2);
+            $object->setLicenses($values_3);
         } elseif (\array_key_exists('licenses', $data) && null === $data['licenses']) {
             $object->setLicenses(null);
         }
-        if (\array_key_exists('management', $data)) {
+        if (\array_key_exists('management', $data) && null !== $data['management']) {
             $object->setManagement($this->denormalizer->denormalize($data['management'], 'Glook\Dadata\Generated\Suggestions\Model\PartyManagement', 'json', $context));
+        } elseif (\array_key_exists('management', $data) && null === $data['management']) {
+            $object->setManagement(null);
         }
         if (\array_key_exists('managers', $data) && null !== $data['managers']) {
-            $values_3 = [];
-            foreach ($data['managers'] as $value_3) {
-                $values_3[] = $this->denormalizer->denormalize($value_3, 'Glook\Dadata\Generated\Suggestions\Model\ManagerParty', 'json', $context);
+            $values_4 = [];
+            foreach ($data['managers'] as $value_4) {
+                $values_4[] = $this->denormalizer->denormalize($value_4, 'Glook\Dadata\Generated\Suggestions\Model\ManagerParty', 'json', $context);
             }
-            $object->setManagers($values_3);
+            $object->setManagers($values_4);
         } elseif (\array_key_exists('managers', $data) && null === $data['managers']) {
             $object->setManagers(null);
         }
@@ -189,32 +212,34 @@ class PartyNormalizer implements DenormalizerInterface, NormalizerInterface, Den
             $object->setOkvedType(null);
         }
         if (\array_key_exists('okveds', $data) && null !== $data['okveds']) {
-            $values_4 = [];
-            foreach ($data['okveds'] as $value_4) {
-                $values_4[] = $this->denormalizer->denormalize($value_4, 'Glook\Dadata\Generated\Suggestions\Model\PartyOkved', 'json', $context);
+            $values_5 = [];
+            foreach ($data['okveds'] as $value_5) {
+                $values_5[] = $this->denormalizer->denormalize($value_5, 'Glook\Dadata\Generated\Suggestions\Model\PartyOkved', 'json', $context);
             }
-            $object->setOkveds($values_4);
+            $object->setOkveds($values_5);
         } elseif (\array_key_exists('okveds', $data) && null === $data['okveds']) {
             $object->setOkveds(null);
         }
-        if (\array_key_exists('opf', $data)) {
+        if (\array_key_exists('opf', $data) && null !== $data['opf']) {
             $object->setOpf($this->denormalizer->denormalize($data['opf'], 'Glook\Dadata\Generated\Suggestions\Model\PartyOpf', 'json', $context));
+        } elseif (\array_key_exists('opf', $data) && null === $data['opf']) {
+            $object->setOpf(null);
         }
         if (\array_key_exists('phones', $data) && null !== $data['phones']) {
-            $values_5 = [];
-            foreach ($data['phones'] as $value_5) {
-                $values_5[] = $this->denormalizer->denormalize($value_5, 'Glook\Dadata\Generated\Suggestions\Model\SuggestionPartyPhone', 'json', $context);
+            $values_6 = [];
+            foreach ($data['phones'] as $value_6) {
+                $values_6[] = $this->denormalizer->denormalize($value_6, 'Glook\Dadata\Generated\Suggestions\Model\SuggestionPartyPhone', 'json', $context);
             }
-            $object->setPhones($values_5);
+            $object->setPhones($values_6);
         } elseif (\array_key_exists('phones', $data) && null === $data['phones']) {
             $object->setPhones(null);
         }
         if (\array_key_exists('predecessors', $data) && null !== $data['predecessors']) {
-            $values_6 = [];
-            foreach ($data['predecessors'] as $value_6) {
-                $values_6[] = $this->denormalizer->denormalize($value_6, 'Glook\Dadata\Generated\Suggestions\Model\PartyReference', 'json', $context);
+            $values_7 = [];
+            foreach ($data['predecessors'] as $value_7) {
+                $values_7[] = $this->denormalizer->denormalize($value_7, 'Glook\Dadata\Generated\Suggestions\Model\PartyReference', 'json', $context);
             }
-            $object->setPredecessors($values_6);
+            $object->setPredecessors($values_7);
         } elseif (\array_key_exists('predecessors', $data) && null === $data['predecessors']) {
             $object->setPredecessors(null);
         }
@@ -228,15 +253,24 @@ class PartyNormalizer implements DenormalizerInterface, NormalizerInterface, Den
         } elseif (\array_key_exists('source', $data) && null === $data['source']) {
             $object->setSource(null);
         }
+        if (\array_key_exists('sites', $data) && null !== $data['sites']) {
+            $values_8 = [];
+            foreach ($data['sites'] as $value_8) {
+                $values_8[] = $value_8;
+            }
+            $object->setSites($values_8);
+        } elseif (\array_key_exists('sites', $data) && null === $data['sites']) {
+            $object->setSites(null);
+        }
         if (\array_key_exists('state', $data)) {
             $object->setState($this->denormalizer->denormalize($data['state'], 'Glook\Dadata\Generated\Suggestions\Model\PartyState', 'json', $context));
         }
         if (\array_key_exists('successors', $data) && null !== $data['successors']) {
-            $values_7 = [];
-            foreach ($data['successors'] as $value_7) {
-                $values_7[] = $this->denormalizer->denormalize($value_7, 'Glook\Dadata\Generated\Suggestions\Model\PartyReference', 'json', $context);
+            $values_9 = [];
+            foreach ($data['successors'] as $value_9) {
+                $values_9[] = $this->denormalizer->denormalize($value_9, 'Glook\Dadata\Generated\Suggestions\Model\PartyReference', 'json', $context);
             }
-            $object->setSuccessors($values_7);
+            $object->setSuccessors($values_9);
         } elseif (\array_key_exists('successors', $data) && null === $data['successors']) {
             $object->setSuccessors(null);
         }
@@ -284,15 +318,22 @@ class PartyNormalizer implements DenormalizerInterface, NormalizerInterface, Den
         if (null !== $object->getFinance()) {
             $data['finance'] = $this->normalizer->normalize($object->getFinance(), 'json', $context);
         }
+        if (null !== $object->getFinanceHistory()) {
+            $values_1 = [];
+            foreach ($object->getFinanceHistory() as $value_1) {
+                $values_1[] = $this->normalizer->normalize($value_1, 'json', $context);
+            }
+            $data['finance_history'] = $values_1;
+        }
         if (null !== $object->getFio()) {
             $data['fio'] = $this->normalizer->normalize($object->getFio(), 'json', $context);
         }
         if (null !== $object->getFounders()) {
-            $values_1 = [];
-            foreach ($object->getFounders() as $value_1) {
-                $values_1[] = $this->normalizer->normalize($value_1, 'json', $context);
+            $values_2 = [];
+            foreach ($object->getFounders() as $value_2) {
+                $values_2[] = $this->normalizer->normalize($value_2, 'json', $context);
             }
-            $data['founders'] = $values_1;
+            $data['founders'] = $values_2;
         }
         if (null !== $object->getHid()) {
             $data['hid'] = $object->getHid();
@@ -310,21 +351,21 @@ class PartyNormalizer implements DenormalizerInterface, NormalizerInterface, Den
             $data['kpp_largest'] = $object->getKppLargest();
         }
         if (null !== $object->getLicenses()) {
-            $values_2 = [];
-            foreach ($object->getLicenses() as $value_2) {
-                $values_2[] = $this->normalizer->normalize($value_2, 'json', $context);
+            $values_3 = [];
+            foreach ($object->getLicenses() as $value_3) {
+                $values_3[] = $this->normalizer->normalize($value_3, 'json', $context);
             }
-            $data['licenses'] = $values_2;
+            $data['licenses'] = $values_3;
         }
         if (null !== $object->getManagement()) {
             $data['management'] = $this->normalizer->normalize($object->getManagement(), 'json', $context);
         }
         if (null !== $object->getManagers()) {
-            $values_3 = [];
-            foreach ($object->getManagers() as $value_3) {
-                $values_3[] = $this->normalizer->normalize($value_3, 'json', $context);
+            $values_4 = [];
+            foreach ($object->getManagers() as $value_4) {
+                $values_4[] = $this->normalizer->normalize($value_4, 'json', $context);
             }
-            $data['managers'] = $values_3;
+            $data['managers'] = $values_4;
         }
         $data['name'] = $this->normalizer->normalize($object->getName(), 'json', $context);
         if (null !== $object->getOgrn()) {
@@ -355,28 +396,28 @@ class PartyNormalizer implements DenormalizerInterface, NormalizerInterface, Den
             $data['okved_type'] = $object->getOkvedType();
         }
         if (null !== $object->getOkveds()) {
-            $values_4 = [];
-            foreach ($object->getOkveds() as $value_4) {
-                $values_4[] = $this->normalizer->normalize($value_4, 'json', $context);
+            $values_5 = [];
+            foreach ($object->getOkveds() as $value_5) {
+                $values_5[] = $this->normalizer->normalize($value_5, 'json', $context);
             }
-            $data['okveds'] = $values_4;
+            $data['okveds'] = $values_5;
         }
         if (null !== $object->getOpf()) {
             $data['opf'] = $this->normalizer->normalize($object->getOpf(), 'json', $context);
         }
         if (null !== $object->getPhones()) {
-            $values_5 = [];
-            foreach ($object->getPhones() as $value_5) {
-                $values_5[] = $this->normalizer->normalize($value_5, 'json', $context);
-            }
-            $data['phones'] = $values_5;
-        }
-        if (null !== $object->getPredecessors()) {
             $values_6 = [];
-            foreach ($object->getPredecessors() as $value_6) {
+            foreach ($object->getPhones() as $value_6) {
                 $values_6[] = $this->normalizer->normalize($value_6, 'json', $context);
             }
-            $data['predecessors'] = $values_6;
+            $data['phones'] = $values_6;
+        }
+        if (null !== $object->getPredecessors()) {
+            $values_7 = [];
+            foreach ($object->getPredecessors() as $value_7) {
+                $values_7[] = $this->normalizer->normalize($value_7, 'json', $context);
+            }
+            $data['predecessors'] = $values_7;
         }
         if (null !== $object->getQc()) {
             $data['qc'] = $object->getQc();
@@ -384,13 +425,20 @@ class PartyNormalizer implements DenormalizerInterface, NormalizerInterface, Den
         if (null !== $object->getSource()) {
             $data['source'] = $object->getSource();
         }
+        if (null !== $object->getSites()) {
+            $values_8 = [];
+            foreach ($object->getSites() as $value_8) {
+                $values_8[] = $value_8;
+            }
+            $data['sites'] = $values_8;
+        }
         $data['state'] = $this->normalizer->normalize($object->getState(), 'json', $context);
         if (null !== $object->getSuccessors()) {
-            $values_7 = [];
-            foreach ($object->getSuccessors() as $value_7) {
-                $values_7[] = $this->normalizer->normalize($value_7, 'json', $context);
+            $values_9 = [];
+            foreach ($object->getSuccessors() as $value_9) {
+                $values_9[] = $this->normalizer->normalize($value_9, 'json', $context);
             }
-            $data['successors'] = $values_7;
+            $data['successors'] = $values_9;
         }
         $data['type'] = $object->getType();
 

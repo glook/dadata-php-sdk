@@ -40,10 +40,10 @@ class PartyNameNormalizer implements DenormalizerInterface, NormalizerInterface,
         if (null === $data || false === \is_array($data)) {
             return $object;
         }
-        if (\array_key_exists('full_value', $data) && null !== $data['full_value']) {
-            $object->setFullValue($data['full_value']);
-        } elseif (\array_key_exists('full_value', $data) && null === $data['full_value']) {
-            $object->setFullValue(null);
+        if (\array_key_exists('full', $data) && null !== $data['full']) {
+            $object->setFull($data['full']);
+        } elseif (\array_key_exists('full', $data) && null === $data['full']) {
+            $object->setFull(null);
         }
         if (\array_key_exists('full_with_opf', $data) && null !== $data['full_with_opf']) {
             $object->setFullWithOpf($data['full_with_opf']);
@@ -55,10 +55,10 @@ class PartyNameNormalizer implements DenormalizerInterface, NormalizerInterface,
         } elseif (\array_key_exists('latin', $data) && null === $data['latin']) {
             $object->setLatin(null);
         }
-        if (\array_key_exists('short_value', $data) && null !== $data['short_value']) {
-            $object->setShortValue($data['short_value']);
-        } elseif (\array_key_exists('short_value', $data) && null === $data['short_value']) {
-            $object->setShortValue(null);
+        if (\array_key_exists('short', $data) && null !== $data['short']) {
+            $object->setShort($data['short']);
+        } elseif (\array_key_exists('short', $data) && null === $data['short']) {
+            $object->setShort(null);
         }
         if (\array_key_exists('short_with_opf', $data) && null !== $data['short_with_opf']) {
             $object->setShortWithOpf($data['short_with_opf']);
@@ -72,8 +72,8 @@ class PartyNameNormalizer implements DenormalizerInterface, NormalizerInterface,
     public function normalize($object, $format = null, array $context = [])
     {
         $data = [];
-        if (null !== $object->getFullValue()) {
-            $data['full_value'] = $object->getFullValue();
+        if (null !== $object->getFull()) {
+            $data['full'] = $object->getFull();
         }
         if (null !== $object->getFullWithOpf()) {
             $data['full_with_opf'] = $object->getFullWithOpf();
@@ -81,8 +81,8 @@ class PartyNameNormalizer implements DenormalizerInterface, NormalizerInterface,
         if (null !== $object->getLatin()) {
             $data['latin'] = $object->getLatin();
         }
-        if (null !== $object->getShortValue()) {
-            $data['short_value'] = $object->getShortValue();
+        if (null !== $object->getShort()) {
+            $data['short'] = $object->getShort();
         }
         if (null !== $object->getShortWithOpf()) {
             $data['short_with_opf'] = $object->getShortWithOpf();

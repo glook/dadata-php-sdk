@@ -10,6 +10,11 @@ class PartyCodeUnit
     protected $alpha3;
 
     /**
+     * @var null|string
+     */
+    protected $alpha32;
+
+    /**
      * @var null|int
      */
     protected $numeric;
@@ -22,6 +27,18 @@ class PartyCodeUnit
     public function setAlpha3(?string $alpha3): self
     {
         $this->alpha3 = $alpha3;
+
+        return $this;
+    }
+
+    public function getAlpha32(): ?string
+    {
+        return $this->alpha32;
+    }
+
+    public function setAlpha32(?string $alpha32): self
+    {
+        $this->alpha32 = $alpha32;
 
         return $this;
     }

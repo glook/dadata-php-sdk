@@ -40,20 +40,28 @@ class PartyDocumentsNormalizer implements DenormalizerInterface, NormalizerInter
         if (null === $data || false === \is_array($data)) {
             return $object;
         }
-        if (\array_key_exists('fts_registration', $data)) {
+        if (\array_key_exists('fts_registration', $data) && null !== $data['fts_registration']) {
             $object->setFtsRegistration($this->denormalizer->denormalize($data['fts_registration'], 'Glook\Dadata\Generated\Suggestions\Model\PartyDocument', 'json', $context));
+        } elseif (\array_key_exists('fts_registration', $data) && null === $data['fts_registration']) {
+            $object->setFtsRegistration(null);
         }
         if (\array_key_exists('fts_report', $data)) {
             $object->setFtsReport($this->denormalizer->denormalize($data['fts_report'], 'Glook\Dadata\Generated\Suggestions\Model\PartyDocument', 'json', $context));
         }
-        if (\array_key_exists('pf_registration', $data)) {
+        if (\array_key_exists('pf_registration', $data) && null !== $data['pf_registration']) {
             $object->setPfRegistration($this->denormalizer->denormalize($data['pf_registration'], 'Glook\Dadata\Generated\Suggestions\Model\PartyDocument', 'json', $context));
+        } elseif (\array_key_exists('pf_registration', $data) && null === $data['pf_registration']) {
+            $object->setPfRegistration(null);
         }
-        if (\array_key_exists('sif_registration', $data)) {
+        if (\array_key_exists('sif_registration', $data) && null !== $data['sif_registration']) {
             $object->setSifRegistration($this->denormalizer->denormalize($data['sif_registration'], 'Glook\Dadata\Generated\Suggestions\Model\PartyDocument', 'json', $context));
+        } elseif (\array_key_exists('sif_registration', $data) && null === $data['sif_registration']) {
+            $object->setSifRegistration(null);
         }
-        if (\array_key_exists('smb', $data)) {
+        if (\array_key_exists('smb', $data) && null !== $data['smb']) {
             $object->setSmb($this->denormalizer->denormalize($data['smb'], 'Glook\Dadata\Generated\Suggestions\Model\PartySmbDocument', 'json', $context));
+        } elseif (\array_key_exists('smb', $data) && null === $data['smb']) {
+            $object->setSmb(null);
         }
 
         return $object;

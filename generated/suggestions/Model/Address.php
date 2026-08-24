@@ -145,7 +145,7 @@ class Address
     protected $custom;
 
     /**
-     * @var AddressDivisions
+     * @var null|AddressDivisions
      */
     protected $divisions;
 
@@ -871,12 +871,12 @@ class Address
         return $this;
     }
 
-    public function getDivisions(): AddressDivisions
+    public function getDivisions(): ?AddressDivisions
     {
         return $this->divisions;
     }
 
-    public function setDivisions(AddressDivisions $divisions): self
+    public function setDivisions(?AddressDivisions $divisions): self
     {
         $this->divisions = $divisions;
 

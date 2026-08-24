@@ -50,8 +50,10 @@ class PartyPhoneNormalizer implements DenormalizerInterface, NormalizerInterface
         } elseif (\array_key_exists('city_code', $data) && null === $data['city_code']) {
             $object->setCityCode(null);
         }
-        if (\array_key_exists('contact', $data)) {
+        if (\array_key_exists('contact', $data) && null !== $data['contact']) {
             $object->setContact($this->denormalizer->denormalize($data['contact'], 'Glook\Dadata\Generated\Suggestions\Model\PartyPhoneContact', 'json', $context));
+        } elseif (\array_key_exists('contact', $data) && null === $data['contact']) {
+            $object->setContact(null);
         }
         if (\array_key_exists('country', $data) && null !== $data['country']) {
             $object->setCountry($data['country']);
@@ -72,6 +74,15 @@ class PartyPhoneNormalizer implements DenormalizerInterface, NormalizerInterface
             $object->setNumber($data['number']);
         } elseif (\array_key_exists('number', $data) && null === $data['number']) {
             $object->setNumber(null);
+        }
+        if (\array_key_exists('origins', $data) && null !== $data['origins']) {
+            $values = [];
+            foreach ($data['origins'] as $value) {
+                $values[] = $value;
+            }
+            $object->setOrigins($values);
+        } elseif (\array_key_exists('origins', $data) && null === $data['origins']) {
+            $object->setOrigins(null);
         }
         if (\array_key_exists('provider', $data) && null !== $data['provider']) {
             $object->setProvider($data['provider']);
@@ -135,6 +146,13 @@ class PartyPhoneNormalizer implements DenormalizerInterface, NormalizerInterface
         }
         if (null !== $object->getNumber()) {
             $data['number'] = $object->getNumber();
+        }
+        if (null !== $object->getOrigins()) {
+            $values = [];
+            foreach ($object->getOrigins() as $value) {
+                $values[] = $value;
+            }
+            $data['origins'] = $values;
         }
         if (null !== $object->getProvider()) {
             $data['provider'] = $object->getProvider();

@@ -420,7 +420,9 @@ components:
           items:
             type: object
         divisions:
-          $ref: "#/components/schemas/AddressDivisions"
+          nullable: true
+          allOf:
+            - $ref: "#/components/schemas/AddressDivisions"
         entrance:
           type: string
           nullable: true
@@ -697,22 +699,22 @@ components:
     BankName:
       type: object
       properties:
-        full_value:
+        full:
           type: string
           nullable: true
         payment:
           type: string
           nullable: true
-        short_value:
+        short:
           type: string
           nullable: true
     BankOpf:
       type: object
       properties:
-        full_value:
+        full:
           type: string
           nullable: true
-        short_value:
+        short:
           type: string
           nullable: true
         type:
@@ -734,13 +736,19 @@ components:
         - state
       type: object
       properties:
+        additional_codes:
+          type: array
+          nullable: true
+          items: {}
         address:
           $ref: "#/components/schemas/SuggestionAddress"
         bic:
           type: string
           nullable: true
         cbr:
-          $ref: "#/components/schemas/BankParty"
+          nullable: true
+          allOf:
+            - $ref: "#/components/schemas/BankParty"
         correspondent_account:
           type: string
           nullable: true
@@ -769,12 +777,19 @@ components:
           type: string
           nullable: true
         rkc:
-          $ref: "#/components/schemas/BankParty"
+          nullable: true
+          allOf:
+            - $ref: "#/components/schemas/BankParty"
         state:
           $ref: "#/components/schemas/BankState"
         swift:
           type: string
           nullable: true
+        swifts:
+          type: array
+          nullable: true
+          items:
+            type: string
         treasury_accounts:
           type: array
           nullable: true
@@ -1217,6 +1232,26 @@ components:
           enum:
             - LEGAL
             - INDIVIDUAL
+    FinanceHistoryItem:
+      type: object
+      properties:
+        year:
+          type: integer
+          nullable: true
+        metrics:
+          type: array
+          nullable: true
+          items:
+            $ref: "#/components/schemas/FinanceMetric"
+    FinanceMetric:
+      type: object
+      properties:
+        code:
+          type: string
+          nullable: true
+        value:
+          type: number
+          nullable: true
     Fio:
       type: object
       properties:
@@ -1681,11 +1716,23 @@ components:
     ManagerParty:
       type: object
       properties:
+        fio:
+          nullable: true
+          allOf:
+            - $ref: "#/components/schemas/Fio"
         hid:
           type: string
           nullable: true
+        inn:
+          type: string
+          nullable: true
         invalidity:
-          $ref: "#/components/schemas/PartyInvalidity"
+          nullable: true
+          allOf:
+            - $ref: "#/components/schemas/PartyInvalidity"
+        post:
+          type: string
+          nullable: true
         start_date:
           type: integer
           format: int64
@@ -1760,7 +1807,9 @@ components:
       type: object
       properties:
         address:
-          $ref: "#/components/schemas/PartyAddress"
+          nullable: true
+          allOf:
+            - $ref: "#/components/schemas/PartyAddress"
         authorities:
           $ref: "#/components/schemas/PartyAuthorities"
         branch_count:
@@ -1774,11 +1823,17 @@ components:
             - MAIN
             - BRANCH
         capital:
-          $ref: "#/components/schemas/PartyCapital"
+          nullable: true
+          allOf:
+            - $ref: "#/components/schemas/PartyCapital"
         citizenship:
-          $ref: "#/components/schemas/PartyCountry"
+          nullable: true
+          allOf:
+            - $ref: "#/components/schemas/PartyCountry"
         documents:
-          $ref: "#/components/schemas/PartyDocuments"
+          nullable: true
+          allOf:
+            - $ref: "#/components/schemas/PartyDocuments"
         emails:
           type: array
           nullable: true
@@ -1789,9 +1844,18 @@ components:
           format: int32
           nullable: true
         finance:
-          $ref: "#/components/schemas/PartyFinance"
+          nullable: true
+          allOf:
+            - $ref: "#/components/schemas/PartyFinance"
+        finance_history:
+          type: array
+          nullable: true
+          items:
+            $ref: "#/components/schemas/FinanceHistoryItem"
         fio:
-          $ref: "#/components/schemas/Fio"
+          nullable: true
+          allOf:
+            - $ref: "#/components/schemas/Fio"
         founders:
           type: array
           nullable: true
@@ -1818,7 +1882,9 @@ components:
           items:
             $ref: "#/components/schemas/PartyLicense"
         management:
-          $ref: "#/components/schemas/PartyManagement"
+          nullable: true
+          allOf:
+            - $ref: "#/components/schemas/PartyManagement"
         managers:
           type: array
           nullable: true
@@ -1860,7 +1926,9 @@ components:
           items:
             $ref: "#/components/schemas/PartyOkved"
         opf:
-          $ref: "#/components/schemas/PartyOpf"
+          nullable: true
+          allOf:
+            - $ref: "#/components/schemas/PartyOpf"
         phones:
           type: array
           nullable: true
@@ -1877,6 +1945,10 @@ components:
         source:
           type: string
           nullable: true
+        sites:
+          type: array
+          nullable: true
+          items: {}
         state:
           $ref: "#/components/schemas/PartyState"
         successors:
@@ -1895,7 +1967,9 @@ components:
         data:
           $ref: "#/components/schemas/Address"
         invalidity:
-          $ref: "#/components/schemas/PartyInvalidity"
+          nullable: true
+          allOf:
+            - $ref: "#/components/schemas/PartyInvalidity"
         unrestricted_value:
           type: string
           nullable: true
@@ -1906,13 +1980,21 @@ components:
       type: object
       properties:
         fts_registration:
-          $ref: "#/components/schemas/PartyAuthority"
+          nullable: true
+          allOf:
+            - $ref: "#/components/schemas/PartyAuthority"
         fts_report:
-          $ref: "#/components/schemas/PartyAuthority"
+          nullable: true
+          allOf:
+            - $ref: "#/components/schemas/PartyAuthority"
         pf:
-          $ref: "#/components/schemas/PartyAuthority"
+          nullable: true
+          allOf:
+            - $ref: "#/components/schemas/PartyAuthority"
         sif:
-          $ref: "#/components/schemas/PartyAuthority"
+          nullable: true
+          allOf:
+            - $ref: "#/components/schemas/PartyAuthority"
     PartyAuthority:
       type: object
       properties:
@@ -1944,6 +2026,9 @@ components:
     PartyCodeUnit:
       type: object
       properties:
+        alpha_3:
+          type: string
+          nullable: true
         alpha3:
           type: string
           nullable: true
@@ -2005,15 +2090,23 @@ components:
       type: object
       properties:
         fts_registration:
-          $ref: "#/components/schemas/PartyDocument"
+          nullable: true
+          allOf:
+            - $ref: "#/components/schemas/PartyDocument"
         fts_report:
           $ref: "#/components/schemas/PartyDocument"
         pf_registration:
-          $ref: "#/components/schemas/PartyDocument"
+          nullable: true
+          allOf:
+            - $ref: "#/components/schemas/PartyDocument"
         sif_registration:
-          $ref: "#/components/schemas/PartyDocument"
+          nullable: true
+          allOf:
+            - $ref: "#/components/schemas/PartyDocument"
         smb:
-          $ref: "#/components/schemas/PartySmbDocument"
+          nullable: true
+          allOf:
+            - $ref: "#/components/schemas/PartySmbDocument"
     PartyFinance:
       type: object
       properties:
@@ -2121,7 +2214,7 @@ components:
     PartyName:
       type: object
       properties:
-        full_value:
+        full:
           type: string
           nullable: true
         full_with_opf:
@@ -2130,7 +2223,7 @@ components:
         latin:
           type: string
           nullable: true
-        short_value:
+        short:
           type: string
           nullable: true
         short_with_opf:
@@ -2139,10 +2232,10 @@ components:
     PartyNameUnit:
       type: object
       properties:
-        full_value:
+        full:
           type: string
           nullable: true
-        short_value:
+        short:
           type: string
           nullable: true
     PartyOkved:
@@ -2166,10 +2259,10 @@ components:
         code:
           type: string
           nullable: true
-        full_value:
+        full:
           type: string
           nullable: true
-        short_value:
+        short:
           type: string
           nullable: true
         type:
@@ -2185,7 +2278,9 @@ components:
           type: string
           nullable: true
         contact:
-          $ref: "#/components/schemas/PartyPhoneContact"
+          nullable: true
+          allOf:
+            - $ref: "#/components/schemas/PartyPhoneContact"
         country:
           type: string
           nullable: true
@@ -2198,6 +2293,10 @@ components:
         number:
           type: string
           nullable: true
+        origins:
+          type: array
+          nullable: true
+          items: {}
         provider:
           type: string
           nullable: true
@@ -2659,7 +2758,9 @@ components:
       type: object
       properties:
         data:
-          $ref: "#/components/schemas/Address"
+          nullable: true
+          allOf:
+            - $ref: "#/components/schemas/Address"
         unrestricted_value:
           type: string
           nullable: true

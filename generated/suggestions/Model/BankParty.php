@@ -5,6 +5,11 @@ namespace Glook\Dadata\Generated\Suggestions\Model;
 class BankParty
 {
     /**
+     * @var null|mixed[]
+     */
+    protected $additionalCodes;
+
+    /**
      * @var SuggestionAddress
      */
     protected $address;
@@ -15,7 +20,7 @@ class BankParty
     protected $bic;
 
     /**
-     * @var BankParty
+     * @var null|BankParty
      */
     protected $cbr;
 
@@ -65,7 +70,7 @@ class BankParty
     protected $registrationNumber;
 
     /**
-     * @var BankParty
+     * @var null|BankParty
      */
     protected $rkc;
 
@@ -82,7 +87,30 @@ class BankParty
     /**
      * @var null|string[]
      */
+    protected $swifts;
+
+    /**
+     * @var null|string[]
+     */
     protected $treasuryAccounts;
+
+    /**
+     * @return null|mixed[]
+     */
+    public function getAdditionalCodes(): ?array
+    {
+        return $this->additionalCodes;
+    }
+
+    /**
+     * @param null|mixed[] $additionalCodes
+     */
+    public function setAdditionalCodes(?array $additionalCodes): self
+    {
+        $this->additionalCodes = $additionalCodes;
+
+        return $this;
+    }
 
     public function getAddress(): SuggestionAddress
     {
@@ -108,12 +136,12 @@ class BankParty
         return $this;
     }
 
-    public function getCbr(): BankParty
+    public function getCbr(): ?BankParty
     {
         return $this->cbr;
     }
 
-    public function setCbr(BankParty $cbr): self
+    public function setCbr(?BankParty $cbr): self
     {
         $this->cbr = $cbr;
 
@@ -234,12 +262,12 @@ class BankParty
         return $this;
     }
 
-    public function getRkc(): BankParty
+    public function getRkc(): ?BankParty
     {
         return $this->rkc;
     }
 
-    public function setRkc(BankParty $rkc): self
+    public function setRkc(?BankParty $rkc): self
     {
         $this->rkc = $rkc;
 
@@ -266,6 +294,24 @@ class BankParty
     public function setSwift(?string $swift): self
     {
         $this->swift = $swift;
+
+        return $this;
+    }
+
+    /**
+     * @return null|string[]
+     */
+    public function getSwifts(): ?array
+    {
+        return $this->swifts;
+    }
+
+    /**
+     * @param null|string[] $swifts
+     */
+    public function setSwifts(?array $swifts): self
+    {
+        $this->swifts = $swifts;
 
         return $this;
     }

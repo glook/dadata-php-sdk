@@ -5,14 +5,29 @@ namespace Glook\Dadata\Generated\Suggestions\Model;
 class ManagerParty
 {
     /**
+     * @var null|Fio
+     */
+    protected $fio;
+
+    /**
      * @var null|string
      */
     protected $hid;
 
     /**
-     * @var PartyInvalidity
+     * @var null|string
+     */
+    protected $inn;
+
+    /**
+     * @var null|PartyInvalidity
      */
     protected $invalidity;
+
+    /**
+     * @var null|string
+     */
+    protected $post;
 
     /**
      * @var null|int
@@ -23,6 +38,18 @@ class ManagerParty
      * @var null|string
      */
     protected $type;
+
+    public function getFio(): ?Fio
+    {
+        return $this->fio;
+    }
+
+    public function setFio(?Fio $fio): self
+    {
+        $this->fio = $fio;
+
+        return $this;
+    }
 
     public function getHid(): ?string
     {
@@ -36,14 +63,38 @@ class ManagerParty
         return $this;
     }
 
-    public function getInvalidity(): PartyInvalidity
+    public function getInn(): ?string
+    {
+        return $this->inn;
+    }
+
+    public function setInn(?string $inn): self
+    {
+        $this->inn = $inn;
+
+        return $this;
+    }
+
+    public function getInvalidity(): ?PartyInvalidity
     {
         return $this->invalidity;
     }
 
-    public function setInvalidity(PartyInvalidity $invalidity): self
+    public function setInvalidity(?PartyInvalidity $invalidity): self
     {
         $this->invalidity = $invalidity;
+
+        return $this;
+    }
+
+    public function getPost(): ?string
+    {
+        return $this->post;
+    }
+
+    public function setPost(?string $post): self
+    {
+        $this->post = $post;
 
         return $this;
     }

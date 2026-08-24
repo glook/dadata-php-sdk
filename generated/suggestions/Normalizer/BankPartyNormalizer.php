@@ -40,6 +40,15 @@ class BankPartyNormalizer implements DenormalizerInterface, NormalizerInterface,
         if (null === $data || false === \is_array($data)) {
             return $object;
         }
+        if (\array_key_exists('additional_codes', $data) && null !== $data['additional_codes']) {
+            $values = [];
+            foreach ($data['additional_codes'] as $value) {
+                $values[] = $value;
+            }
+            $object->setAdditionalCodes($values);
+        } elseif (\array_key_exists('additional_codes', $data) && null === $data['additional_codes']) {
+            $object->setAdditionalCodes(null);
+        }
         if (\array_key_exists('address', $data)) {
             $object->setAddress($this->denormalizer->denormalize($data['address'], 'Glook\Dadata\Generated\Suggestions\Model\SuggestionAddress', 'json', $context));
         }
@@ -48,8 +57,10 @@ class BankPartyNormalizer implements DenormalizerInterface, NormalizerInterface,
         } elseif (\array_key_exists('bic', $data) && null === $data['bic']) {
             $object->setBic(null);
         }
-        if (\array_key_exists('cbr', $data)) {
+        if (\array_key_exists('cbr', $data) && null !== $data['cbr']) {
             $object->setCbr($this->denormalizer->denormalize($data['cbr'], 'Glook\Dadata\Generated\Suggestions\Model\BankParty', 'json', $context));
+        } elseif (\array_key_exists('cbr', $data) && null === $data['cbr']) {
+            $object->setCbr(null);
         }
         if (\array_key_exists('correspondent_account', $data) && null !== $data['correspondent_account']) {
             $object->setCorrespondentAccount($data['correspondent_account']);
@@ -83,11 +94,11 @@ class BankPartyNormalizer implements DenormalizerInterface, NormalizerInterface,
             $object->setPaymentCity(null);
         }
         if (\array_key_exists('phones', $data) && null !== $data['phones']) {
-            $values = [];
-            foreach ($data['phones'] as $value) {
-                $values[] = $this->denormalizer->denormalize($value, 'Glook\Dadata\Generated\Suggestions\Model\SuggestionPhone', 'json', $context);
+            $values_1 = [];
+            foreach ($data['phones'] as $value_1) {
+                $values_1[] = $this->denormalizer->denormalize($value_1, 'Glook\Dadata\Generated\Suggestions\Model\SuggestionPhone', 'json', $context);
             }
-            $object->setPhones($values);
+            $object->setPhones($values_1);
         } elseif (\array_key_exists('phones', $data) && null === $data['phones']) {
             $object->setPhones(null);
         }
@@ -96,8 +107,10 @@ class BankPartyNormalizer implements DenormalizerInterface, NormalizerInterface,
         } elseif (\array_key_exists('registration_number', $data) && null === $data['registration_number']) {
             $object->setRegistrationNumber(null);
         }
-        if (\array_key_exists('rkc', $data)) {
+        if (\array_key_exists('rkc', $data) && null !== $data['rkc']) {
             $object->setRkc($this->denormalizer->denormalize($data['rkc'], 'Glook\Dadata\Generated\Suggestions\Model\BankParty', 'json', $context));
+        } elseif (\array_key_exists('rkc', $data) && null === $data['rkc']) {
+            $object->setRkc(null);
         }
         if (\array_key_exists('state', $data)) {
             $object->setState($this->denormalizer->denormalize($data['state'], 'Glook\Dadata\Generated\Suggestions\Model\BankState', 'json', $context));
@@ -107,12 +120,21 @@ class BankPartyNormalizer implements DenormalizerInterface, NormalizerInterface,
         } elseif (\array_key_exists('swift', $data) && null === $data['swift']) {
             $object->setSwift(null);
         }
-        if (\array_key_exists('treasury_accounts', $data) && null !== $data['treasury_accounts']) {
-            $values_1 = [];
-            foreach ($data['treasury_accounts'] as $value_1) {
-                $values_1[] = $value_1;
+        if (\array_key_exists('swifts', $data) && null !== $data['swifts']) {
+            $values_2 = [];
+            foreach ($data['swifts'] as $value_2) {
+                $values_2[] = $value_2;
             }
-            $object->setTreasuryAccounts($values_1);
+            $object->setSwifts($values_2);
+        } elseif (\array_key_exists('swifts', $data) && null === $data['swifts']) {
+            $object->setSwifts(null);
+        }
+        if (\array_key_exists('treasury_accounts', $data) && null !== $data['treasury_accounts']) {
+            $values_3 = [];
+            foreach ($data['treasury_accounts'] as $value_3) {
+                $values_3[] = $value_3;
+            }
+            $object->setTreasuryAccounts($values_3);
         } elseif (\array_key_exists('treasury_accounts', $data) && null === $data['treasury_accounts']) {
             $object->setTreasuryAccounts(null);
         }
@@ -123,6 +145,13 @@ class BankPartyNormalizer implements DenormalizerInterface, NormalizerInterface,
     public function normalize($object, $format = null, array $context = [])
     {
         $data = [];
+        if (null !== $object->getAdditionalCodes()) {
+            $values = [];
+            foreach ($object->getAdditionalCodes() as $value) {
+                $values[] = $value;
+            }
+            $data['additional_codes'] = $values;
+        }
         if (null !== $object->getAddress()) {
             $data['address'] = $this->normalizer->normalize($object->getAddress(), 'json', $context);
         }
@@ -150,11 +179,11 @@ class BankPartyNormalizer implements DenormalizerInterface, NormalizerInterface,
             $data['payment_city'] = $object->getPaymentCity();
         }
         if (null !== $object->getPhones()) {
-            $values = [];
-            foreach ($object->getPhones() as $value) {
-                $values[] = $this->normalizer->normalize($value, 'json', $context);
+            $values_1 = [];
+            foreach ($object->getPhones() as $value_1) {
+                $values_1[] = $this->normalizer->normalize($value_1, 'json', $context);
             }
-            $data['phones'] = $values;
+            $data['phones'] = $values_1;
         }
         if (null !== $object->getRegistrationNumber()) {
             $data['registration_number'] = $object->getRegistrationNumber();
@@ -166,12 +195,19 @@ class BankPartyNormalizer implements DenormalizerInterface, NormalizerInterface,
         if (null !== $object->getSwift()) {
             $data['swift'] = $object->getSwift();
         }
-        if (null !== $object->getTreasuryAccounts()) {
-            $values_1 = [];
-            foreach ($object->getTreasuryAccounts() as $value_1) {
-                $values_1[] = $value_1;
+        if (null !== $object->getSwifts()) {
+            $values_2 = [];
+            foreach ($object->getSwifts() as $value_2) {
+                $values_2[] = $value_2;
             }
-            $data['treasury_accounts'] = $values_1;
+            $data['swifts'] = $values_2;
+        }
+        if (null !== $object->getTreasuryAccounts()) {
+            $values_3 = [];
+            foreach ($object->getTreasuryAccounts() as $value_3) {
+                $values_3[] = $value_3;
+            }
+            $data['treasury_accounts'] = $values_3;
         }
 
         return $data;

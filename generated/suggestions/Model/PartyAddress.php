@@ -10,7 +10,7 @@ class PartyAddress
     protected $data;
 
     /**
-     * @var PartyInvalidity
+     * @var null|PartyInvalidity
      */
     protected $invalidity;
 
@@ -36,12 +36,12 @@ class PartyAddress
         return $this;
     }
 
-    public function getInvalidity(): PartyInvalidity
+    public function getInvalidity(): ?PartyInvalidity
     {
         return $this->invalidity;
     }
 
-    public function setInvalidity(PartyInvalidity $invalidity): self
+    public function setInvalidity(?PartyInvalidity $invalidity): self
     {
         $this->invalidity = $invalidity;
 

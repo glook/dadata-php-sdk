@@ -43,8 +43,10 @@ class PartyAddressNormalizer implements DenormalizerInterface, NormalizerInterfa
         if (\array_key_exists('data', $data)) {
             $object->setData($this->denormalizer->denormalize($data['data'], 'Glook\Dadata\Generated\Suggestions\Model\Address', 'json', $context));
         }
-        if (\array_key_exists('invalidity', $data)) {
+        if (\array_key_exists('invalidity', $data) && null !== $data['invalidity']) {
             $object->setInvalidity($this->denormalizer->denormalize($data['invalidity'], 'Glook\Dadata\Generated\Suggestions\Model\PartyInvalidity', 'json', $context));
+        } elseif (\array_key_exists('invalidity', $data) && null === $data['invalidity']) {
+            $object->setInvalidity(null);
         }
         if (\array_key_exists('unrestricted_value', $data) && null !== $data['unrestricted_value']) {
             $object->setUnrestrictedValue($data['unrestricted_value']);

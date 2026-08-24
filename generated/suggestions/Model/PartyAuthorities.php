@@ -5,67 +5,67 @@ namespace Glook\Dadata\Generated\Suggestions\Model;
 class PartyAuthorities
 {
     /**
-     * @var PartyAuthority
+     * @var null|PartyAuthority
      */
     protected $ftsRegistration;
 
     /**
-     * @var PartyAuthority
+     * @var null|PartyAuthority
      */
     protected $ftsReport;
 
     /**
-     * @var PartyAuthority
+     * @var null|PartyAuthority
      */
     protected $pf;
 
     /**
-     * @var PartyAuthority
+     * @var null|PartyAuthority
      */
     protected $sif;
 
-    public function getFtsRegistration(): PartyAuthority
+    public function getFtsRegistration(): ?PartyAuthority
     {
         return $this->ftsRegistration;
     }
 
-    public function setFtsRegistration(PartyAuthority $ftsRegistration): self
+    public function setFtsRegistration(?PartyAuthority $ftsRegistration): self
     {
         $this->ftsRegistration = $ftsRegistration;
 
         return $this;
     }
 
-    public function getFtsReport(): PartyAuthority
+    public function getFtsReport(): ?PartyAuthority
     {
         return $this->ftsReport;
     }
 
-    public function setFtsReport(PartyAuthority $ftsReport): self
+    public function setFtsReport(?PartyAuthority $ftsReport): self
     {
         $this->ftsReport = $ftsReport;
 
         return $this;
     }
 
-    public function getPf(): PartyAuthority
+    public function getPf(): ?PartyAuthority
     {
         return $this->pf;
     }
 
-    public function setPf(PartyAuthority $pf): self
+    public function setPf(?PartyAuthority $pf): self
     {
         $this->pf = $pf;
 
         return $this;
     }
 
-    public function getSif(): PartyAuthority
+    public function getSif(): ?PartyAuthority
     {
         return $this->sif;
     }
 
-    public function setSif(PartyAuthority $sif): self
+    public function setSif(?PartyAuthority $sif): self
     {
         $this->sif = $sif;
 

@@ -5,7 +5,7 @@ namespace Glook\Dadata\Generated\Suggestions\Model;
 class SuggestionAddress
 {
     /**
-     * @var Address
+     * @var null|Address
      */
     protected $data;
 
@@ -19,12 +19,12 @@ class SuggestionAddress
      */
     protected $value;
 
-    public function getData(): Address
+    public function getData(): ?Address
     {
         return $this->data;
     }
 
-    public function setData(Address $data): self
+    public function setData(?Address $data): self
     {
         $this->data = $data;
 
